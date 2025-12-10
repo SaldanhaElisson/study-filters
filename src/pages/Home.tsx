@@ -8,7 +8,7 @@ import { useFileUploader } from "@/hooks/useUploadImg/useUploadImg"
 import { useState } from "react"
 import type { FileData } from "@/hooks/useUploadImg/type"
 export const Home = () => {
-    const [fileList, setFile] = useState<FileData>();
+    const [file, setFile] = useState<FileData>();
 
     const { handleFileChange } = useFileUploader({ setFile })
 
@@ -28,7 +28,7 @@ export const Home = () => {
 
                     </CardContent>
                     <CardFooter className="flex items-center justify-center">
-                        <ActionFilterButton />
+                        <ActionFilterButton file={file} />
                     </CardFooter>
                 </Card>
             </div>

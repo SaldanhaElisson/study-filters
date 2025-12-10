@@ -4,19 +4,27 @@ import { filterGaussiano } from "@/utils/filterByGaussaiano"
 import { filterIdeal } from "@/utils/filterByIdeal"
 import type { ImageMatrix } from "@/utils/type"
 
-const useFilter () => {
-    function filter(filterType: typeoffilter, file: File): ImageMatrix {
+export const useFilter = () => {
+    function filter(filterType: typeoffilter, file: FileReader | undefined): ImageMatrix | undefined {
+
+        if (!file) {
+            return
+        }
 
         if (filterType == "BUTTERWORTH") {
-            return filterButterworth()
+            return filterButterworth(file)
         }
 
         if (filterType == "GAUSSIANO") {
-            return filterGaussiano()
+            return filterGaussiano(file)
         }
 
         if (filterType == "IDEAL") {
-            return filterIdeal()
+            return filterIdeal(file)
         }
+    }
+
+    return {
+        filter
     }
 }
