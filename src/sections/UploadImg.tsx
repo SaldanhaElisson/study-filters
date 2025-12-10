@@ -1,8 +1,12 @@
 import { Input } from "@/components/ui/input"
 
-function UploadImg() {
+interface UploadImgProps {
+    handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+function UploadImg({ handleFileChange }: UploadImgProps) {
     return (
-        <Input type="file" placeholder="Escolha uma imagem" className="w-max" />
+        <Input type="file" placeholder="Escolha uma imagem" className="w-max" onChange={handleFileChange} />
     )
 }
 

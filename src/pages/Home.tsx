@@ -4,7 +4,14 @@ import UploadImg from "@/sections/UploadImg"
 import '../index.css'
 import { ActionFilterButton } from "@/sections/ActionFilterButton"
 import { About } from "@/sections/About"
+import { useFileUploader } from "@/hooks/useUploadImg/useUploadImg"
+import { useState } from "react"
+import type { FileData } from "@/hooks/useUploadImg/type"
 export const Home = () => {
+    const [fileList, setFile] = useState<FileData>();
+
+    const { handleFileChange } = useFileUploader({ setFile })
+
     return (
         <div>
             <div className='min-w-screen min-h-screen bg-accent-foreground flex items-center justify-center'>
@@ -15,8 +22,10 @@ export const Home = () => {
                     </CardHeader>
 
                     <CardContent className="flex flex-col items-center justify-center gap-5">
-                        <UploadImg />
+                        <UploadImg handleFileChange={handleFileChange} />
+
                         <SelectFilter />
+
                     </CardContent>
                     <CardFooter className="flex items-center justify-center">
                         <ActionFilterButton />
