@@ -1,5 +1,6 @@
+import type { ImageMatrix } from "./type";
 
-export function filterButterworth(file: FileReader) {
+export function filterButterworth(file: FileReader): ImageMatrix {
     //TODO
 }
 

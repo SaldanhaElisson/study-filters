@@ -1,0 +1,1 @@
+export type typeoffilter = "BUTTERWORTH" | "GAUSSIANO" | "IDEAL" 
