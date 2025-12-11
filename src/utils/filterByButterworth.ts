@@ -1,6 +1,6 @@
 import type { FileData } from "@/hooks/useUploadImg/type";
 
-function fft1d(re: number[], im: number[]) {
+export function fft1d(re: number[], im: number[]) {
     const n = re.length;
     if (n <= 1) return;
 
@@ -36,7 +36,7 @@ function fft1d(re: number[], im: number[]) {
     }
 }
 
-function ifft1d(re: number[], im: number[]) {
+export function ifft1d(re: number[], im: number[]) {
     for (let i = 0; i < im.length; i++) im[i] = -im[i];
     fft1d(re, im);
     for (let i = 0; i < re.length; i++) {
@@ -45,7 +45,7 @@ function ifft1d(re: number[], im: number[]) {
     }
 }
 
-function fft2d(re: number[][], im: number[][]) {
+export function fft2d(re: number[][], im: number[][]) {
     const h = re.length;
     const w = re[0].length;
 
@@ -69,7 +69,7 @@ function fft2d(re: number[][], im: number[][]) {
     }
 }
 
-function ifft2d(re: number[][], im: number[][]) {
+export function ifft2d(re: number[][], im: number[][]) {
     const h = re.length;
     const w = re[0].length;
 
@@ -93,7 +93,7 @@ function ifft2d(re: number[][], im: number[][]) {
     }
 }
 
-async function fileReaderToMatrix(url: string) {
+export async function fileReaderToMatrix(url: string) {
     return new Promise(resolve => {
         const img = new Image();
         img.onload = () => {
@@ -140,7 +140,7 @@ function applyButterworthLowPass(re: number[][], im: number[][], cutoff: number,
 }
 
 
-function matrixToImageMatrix(mat) {
+export function matrixToImageMatrix(mat) {
     return {
         width: mat[0].length,
         height: mat.length,
@@ -149,7 +149,7 @@ function matrixToImageMatrix(mat) {
 }
 
 
-function shiftFFT(re: number[][], im: number[][]): void {
+export function shiftFFT(re: number[][], im: number[][]): void {
     const h = re.length;
     if (h === 0) return;
     const w = re[0].length;
@@ -164,11 +164,11 @@ function shiftFFT(re: number[][], im: number[][]): void {
     }
 }
 
-function nextPowerOfTwo(n: number): number {
+export function nextPowerOfTwo(n: number): number {
     return Math.pow(2, Math.ceil(Math.log2(n)));
 }
 
-function zeroPadMatrix(matrix: number[][], h: number, w: number) {
+export function zeroPadMatrix(matrix: number[][], h: number, w: number) {
     const paddedH = nextPowerOfTwo(h);
     const paddedW = nextPowerOfTwo(w);
 

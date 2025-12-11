@@ -31,7 +31,7 @@ export const Home = () => {
 
                     </CardContent>
                     <CardFooter className="flex items-center justify-center">
-                        <ActionFilterButton file={file} filter={filter} filterType="BUTTERWORTH" />
+                        <ActionFilterButton file={file} filter={filter} filterType="GAUSSIANO" />
                     </CardFooter>
                 </Card>
             </div>

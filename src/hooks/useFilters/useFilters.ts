@@ -19,8 +19,10 @@ export const useFilter = () => {
         }
 
         if (filterType == "GAUSSIANO") {
-            return filterGaussiano(file)
+            const resulta = await filterGaussiano(file)
+            downloadImageMatrix(resulta)
         }
+
 
         if (filterType == "IDEAL") {
             return filterIdeal(file)

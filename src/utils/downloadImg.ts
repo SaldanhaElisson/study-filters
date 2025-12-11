@@ -1,8 +1,9 @@
 
-function matrixToDataURL(matrixData: ImageMatrix, type: string = 'image/png'): string {
+function matrixToDataURL(matrixData, type: string = 'image/png'): string {
 
     const width = Math.floor(matrixData.width);
     const height = Math.floor(matrixData.height);
+    console.log(width, height)
     const data = matrixData.data;
 
     const canvas = document.createElement("canvas");
