@@ -1,3 +1,5 @@
+import { nextPowerOfTwo } from "./nextPowerOfTwo";
+
 export function zeroPadMatrix(matrix: number[][], h: number, w: number) {
     const paddedH = nextPowerOfTwo(h);
     const paddedW = nextPowerOfTwo(w);
