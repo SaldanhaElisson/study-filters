@@ -8,12 +8,20 @@ import { useFileUploader } from "@/hooks/useUploadImg/useUploadImg"
 import { useState } from "react"
 import type { FileData } from "@/hooks/useUploadImg/type"
 import { useFilter } from "@/hooks/useFilters/useFilters"
+import type { typeoffilter } from "@/hooks/useFilters/type"
 export const Home = () => {
     const [file, setFile] = useState<FileData>();
+    const [typeOfFilter, setTypeOfFilter] = useState<typeoffilter>("BUTTERWORTH")
+
 
     const { handleFileChange } = useFileUploader({ setFile })
 
     const { filter } = useFilter()
+
+    const handleFilterChange = (newFilter: typeoffilter) => {
+        console.log(`Novo filtro selecionado: ${newFilter}`);
+        setTypeOfFilter(newFilter);
+    };
 
     return (
         <div>
@@ -27,11 +35,11 @@ export const Home = () => {
                     <CardContent className="flex flex-col items-center justify-center gap-5">
                         <UploadImg handleFileChange={handleFileChange} />
 
-                        <SelectFilter />
+                        <SelectFilter setTypeOfFilter={handleFilterChange} />
 
                     </CardContent>
                     <CardFooter className="flex items-center justify-center">
-                        <ActionFilterButton file={file} filter={filter} filterType="IDEAL" />
+                        <ActionFilterButton file={file} filter={filter} filterType={typeOfFilter} />
                     </CardFooter>
                 </Card>
             </div>
