@@ -21,7 +21,6 @@ export const Home = () => {
     const { filter } = useFilter()
 
     const handleFilterChange = (newFilter: typeoffilter) => {
-        console.log(`Novo filtro selecionado: ${newFilter}`);
         setTypeOfFilter(newFilter);
     };
 
@@ -34,8 +33,8 @@ export const Home = () => {
             <div className='min-w-screen min-h-screen bg-accent-foreground flex items-center justify-center'>
                 <Card className="min-w-md">
                     <CardHeader>
-                        <CardTitle className="scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0"> FilterX</CardTitle>
-                        <CardDescription> Faça o testes dos seus filtros aqui!</CardDescription>
+                        <CardTitle className="scroll-m-20  pb-2 text-3xl font-semibold tracking-tight first:mt-0 text-center"> FilterFast</CardTitle>
+                        <CardDescription className="text-center"> Faça o testes dos seus filtros aqui, rápido e fácil!</CardDescription>
                     </CardHeader>
 
                     <CardContent className="flex flex-col items-center justify-center gap-5">

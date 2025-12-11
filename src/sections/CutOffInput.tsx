@@ -13,6 +13,6 @@ export const CutOffInput = ({ handleCutOff }: CutOffProps) => {
         handleCutOff(numericValue);
     };
     return (
-        <Input placeholder="Escolha um valor para o CutOff" className="w-max" type="number" onChange={handleChange} />
+        <Input placeholder="Escolha um valor para o CutOff" className="w-[300px]" type="number" onChange={handleChange} />
     )
 }
