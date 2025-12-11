@@ -1,5 +1,10 @@
 import type { FileData } from "@/hooks/useUploadImg/type";
-import { fft2d, fileReaderToMatrix, ifft2d, matrixToImageMatrix, shiftFFT, zeroPadMatrix } from "./filterByButterworth";
+import { fileReaderToMatrix } from "../fileReaderToMatrix";
+import { zeroPadMatrix } from "../zeroPadMatrix";
+import { fft2d } from "../ftt2d";
+import { shiftFFT } from "../shiftFTT";
+import { ifft2d } from "../ifft2d";
+import { matrixToImageMatrix } from "../matrixToImageMatrix";
 
 function applyGaussianLowPass(re, im, cutoff) {
     const h = re.length;
@@ -18,7 +23,6 @@ function applyGaussianLowPass(re, im, cutoff) {
 }
 
 
-
 export function filterGaussiano(file: FileData, cutoff: number) {
     return (async () => {
         const loadedImg = await fileReaderToMatrix(file.url);
@@ -30,7 +34,6 @@ export function filterGaussiano(file: FileData, cutoff: number) {
         const im: number[][] = re.map(r => new Array(r.length).fill(0));
 
         fft2d(re, im);
-
         shiftFFT(re, im);
         applyGaussianLowPass(re, im, cutoff);
         shiftFFT(re, im);

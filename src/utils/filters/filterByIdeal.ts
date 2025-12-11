@@ -1,6 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FileData } from "@/hooks/useUploadImg/type";
-import { fft2d, fileReaderToMatrix, ifft2d, matrixToImageMatrix, shiftFFT, zeroPadMatrix } from "./filterByButterworth";
+import { fileReaderToMatrix } from "../fileReaderToMatrix";
+import { zeroPadMatrix } from "../zeroPadMatrix";
+import { fft2d } from "../ftt2d";
+import { shiftFFT } from "../shiftFTT";
+import { ifft2d } from "../ifft2d";
+import { matrixToImageMatrix } from "../matrixToImageMatrix";
 
 function applyIdealLowPass(re: string | any[], im: number[][], cutoff: number) {
     const h = re.length;
