@@ -11,7 +11,7 @@ const SelectFilter = () => {
                     <SelectGroup>
                         <SelectLabel> Filtros </SelectLabel>
                         <SelectItem value="ideal">ideal</SelectItem>
-                        <SelectItem value="butterworth">butterworth</SelectItem>
+                        <SelectItem value="BUTTERWORTH">butterworth</SelectItem>
                         <SelectItem value="gaussiano">gaussiano</SelectItem>
                     </SelectGroup>
                 </SelectContent>

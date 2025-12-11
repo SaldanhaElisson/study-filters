@@ -1,11 +1,12 @@
 import { Button } from '@/components/ui/button'
 import type { typeoffilter } from '@/hooks/useFilters/type'
+import type { FileData } from '@/hooks/useUploadImg/type'
 import type { ImageMatrix } from '@/utils/type'
 import { ArrowDownToLine } from 'lucide-react'
 
 interface ActionFilterButtonProps {
-    filter: (filterType: typeoffilter, file: FileReader | undefined) => ImageMatrix | undefined,
-    file: FileReader | undefined,
+    filter: (filterType: typeoffilter, file: FileData | undefined) => ImageMatrix | undefined,
+    file: FileData | undefined,
     filterType: typeoffilter
 }
 

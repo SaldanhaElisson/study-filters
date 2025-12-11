@@ -3,16 +3,19 @@ import type { typeoffilter } from "./type"
 import { filterGaussiano } from "@/utils/filterByGaussaiano"
 import { filterIdeal } from "@/utils/filterByIdeal"
 import type { ImageMatrix } from "@/utils/type"
+import type { FileData } from "../useUploadImg/type"
+import { downloadImageMatrix } from "@/utils/downloadImg"
 
 export const useFilter = () => {
-    function filter(filterType: typeoffilter, file: FileReader | undefined): ImageMatrix | undefined {
+    async function filter(filterType: typeoffilter, file: FileData | undefined): ImageMatrix | undefined {
 
         if (!file) {
             return
         }
 
         if (filterType == "BUTTERWORTH") {
-            return filterButterworth(file)
+            const resulta = await filterButterworth(file)
+            downloadImageMatrix(resulta)
         }
 
         if (filterType == "GAUSSIANO") {

@@ -7,10 +7,13 @@ import { About } from "@/sections/About"
 import { useFileUploader } from "@/hooks/useUploadImg/useUploadImg"
 import { useState } from "react"
 import type { FileData } from "@/hooks/useUploadImg/type"
+import { useFilter } from "@/hooks/useFilters/useFilters"
 export const Home = () => {
     const [file, setFile] = useState<FileData>();
 
     const { handleFileChange } = useFileUploader({ setFile })
+
+    const { filter } = useFilter()
 
     return (
         <div>
@@ -28,7 +31,7 @@ export const Home = () => {
 
                     </CardContent>
                     <CardFooter className="flex items-center justify-center">
-                        <ActionFilterButton file={file} />
+                        <ActionFilterButton file={file} filter={filter} filterType="BUTTERWORTH" />
                     </CardFooter>
                 </Card>
             </div>

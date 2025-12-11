@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const About = () => {
     return (<div className='max-w-3xl'>
         <h2 className="scroll-m-20  pb-2 text-3xl font-semibold first:mt-0 mb-10">
