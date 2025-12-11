@@ -9,9 +9,11 @@ import { useState } from "react"
 import type { FileData } from "@/hooks/useUploadImg/type"
 import { useFilter } from "@/hooks/useFilters/useFilters"
 import type { typeoffilter } from "@/hooks/useFilters/type"
+import { CutOffInput } from "@/sections/CutOffInput"
 export const Home = () => {
     const [file, setFile] = useState<FileData>();
     const [typeOfFilter, setTypeOfFilter] = useState<typeoffilter>("BUTTERWORTH")
+    const [cutOff, setCutOff] = useState<number>(150)
 
 
     const { handleFileChange } = useFileUploader({ setFile })
@@ -23,6 +25,10 @@ export const Home = () => {
         setTypeOfFilter(newFilter);
     };
 
+    const handleCutOff = (cutOff: number) => {
+        setCutOff(cutOff)
+    }
+
     return (
         <div>
             <div className='min-w-screen min-h-screen bg-accent-foreground flex items-center justify-center'>
@@ -33,13 +39,14 @@ export const Home = () => {
                     </CardHeader>
 
                     <CardContent className="flex flex-col items-center justify-center gap-5">
-                        <UploadImg handleFileChange={handleFileChange} />
+                        <UploadImg handleFileChange={handleFileChange} fileName={file?.name} />
 
                         <SelectFilter setTypeOfFilter={handleFilterChange} />
 
+                        <CutOffInput handleCutOff={handleCutOff} />
                     </CardContent>
                     <CardFooter className="flex items-center justify-center">
-                        <ActionFilterButton file={file} filter={filter} filterType={typeOfFilter} />
+                        <ActionFilterButton file={file} filter={filter} filterType={typeOfFilter} cutOff={cutOff} />
                     </CardFooter>
                 </Card>
             </div>

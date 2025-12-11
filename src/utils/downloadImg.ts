@@ -1,5 +1,6 @@
+import type { ImageMatrix } from "./type";
 
-function matrixToDataURL(matrixData, type: string = 'image/png'): string {
+function matrixToDataURL(matrixData: ImageMatrix, type: string = 'image/png'): string {
 
     const width = Math.floor(matrixData.width);
     const height = Math.floor(matrixData.height);
@@ -11,8 +12,8 @@ function matrixToDataURL(matrixData, type: string = 'image/png'): string {
     canvas.height = height;
     const ctx = canvas.getContext("2d");
 
-    const imgData = ctx.createImageData(width, height);
-    const pixelData = imgData.data;
+    const imgData = ctx?.createImageData(width, height);
+    const pixelData = imgData?.data;
 
     for (let y = 0; y < height; y++) {
         for (let x = 0; x < width; x++) {
@@ -28,13 +29,13 @@ function matrixToDataURL(matrixData, type: string = 'image/png'): string {
         }
     }
 
-    ctx.putImageData(imgData, 0, 0);
+    ctx?.putImageData(imgData, 0, 0);
 
     return canvas.toDataURL(type);
 }
 
 export function downloadImageMatrix(
-    matrixData,
+    matrixData: ImageMatrix,
     filename: string = 'imagem_filtrada.png'
 ): void {
     const dataUrl = matrixToDataURL(matrixData, 'image/png');

@@ -19,7 +19,7 @@ function applyGaussianLowPass(re, im, cutoff) {
 
 
 
-export function filterGaussiano(file: FileData) {
+export function filterGaussiano(file: FileData, cutoff: number) {
     return (async () => {
         const loadedImg = await fileReaderToMatrix(file.url);
 
@@ -32,7 +32,7 @@ export function filterGaussiano(file: FileData) {
         fft2d(re, im);
 
         shiftFFT(re, im);
-        applyGaussianLowPass(re, im, 150);
+        applyGaussianLowPass(re, im, cutoff);
         shiftFFT(re, im);
         ifft2d(re, im);
 

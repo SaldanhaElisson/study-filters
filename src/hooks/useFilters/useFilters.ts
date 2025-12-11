@@ -7,25 +7,25 @@ import type { FileData } from "../useUploadImg/type"
 import { downloadImageMatrix } from "@/utils/downloadImg"
 
 export const useFilter = () => {
-    async function filter(filterType: typeoffilter, file: FileData | undefined): ImageMatrix | undefined {
+    async function filter(filterType: typeoffilter, file: FileData | undefined, cutoff: number): Promise<ImageMatrix | undefined> {
 
         if (!file) {
             return
         }
 
         if (filterType == "BUTTERWORTH") {
-            const resulta = await filterButterworth(file)
+            const resulta = await filterButterworth(file, cutoff)
             downloadImageMatrix(resulta)
         }
 
         if (filterType == "GAUSSIANO") {
-            const resulta = await filterGaussiano(file)
+            const resulta = await filterGaussiano(file, cutoff)
             downloadImageMatrix(resulta)
         }
 
 
         if (filterType == "IDEAL") {
-            const result = await filterIdeal(file)
+            const result = await filterIdeal(file, cutoff)
             downloadImageMatrix(result)
         }
     }

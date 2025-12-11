@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import type { FileData } from "@/hooks/useUploadImg/type";
 import { fft2d, fileReaderToMatrix, ifft2d, matrixToImageMatrix, shiftFFT, zeroPadMatrix } from "./filterByButterworth";
 
-function applyIdealLowPass(re, im, cutoff) {
+function applyIdealLowPass(re: string | any[], im: number[][], cutoff: number) {
     const h = re.length;
     const w = re[0].length;
     const cy = h / 2;
@@ -18,7 +19,7 @@ function applyIdealLowPass(re, im, cutoff) {
     }
 }
 
-export function filterIdeal(file: FileData) {
+export function filterIdeal(file: FileData, cutoff: number) {
     return (async () => {
         const loadedImg = await fileReaderToMatrix(file.url);
 
@@ -30,7 +31,7 @@ export function filterIdeal(file: FileData) {
 
         fft2d(re, im);
         shiftFFT(re, im);
-        applyIdealLowPass(re, im, 350);
+        applyIdealLowPass(re, im, cutoff);
         shiftFFT(re, im);
         ifft2d(re, im);
 

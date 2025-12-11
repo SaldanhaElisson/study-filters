@@ -185,7 +185,7 @@ export function zeroPadMatrix(matrix: number[][], h: number, w: number) {
     return { data: paddedMatrix, height: paddedH, width: paddedW };
 }
 
-export function filterButterworth(file: FileData) {
+export function filterButterworth(file: FileData, cutoff: number) {
     return (async () => {
 
         const loadedImg = await fileReaderToMatrix(file.url);
@@ -198,7 +198,7 @@ export function filterButterworth(file: FileData) {
 
         fft2d(re, im);
         shiftFFT(re, im);
-        applyButterworthLowPass(re, im, 150, 1);
+        applyButterworthLowPass(re, im, cutoff, 1);
         shiftFFT(re, im);
         ifft2d(re, im);
 
