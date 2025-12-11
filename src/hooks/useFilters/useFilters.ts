@@ -25,7 +25,8 @@ export const useFilter = () => {
 
 
         if (filterType == "IDEAL") {
-            return filterIdeal(file)
+            const result = await filterIdeal(file)
+            downloadImageMatrix(result)
         }
     }
 

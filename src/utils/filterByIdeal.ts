@@ -1,11 +1,5 @@
-import type { ImageMatrix } from "./type";
-
-function fft1d(re, im) { /* ... */ }
-function ifft1d(re, im) { /* ... */ }
-function fft2d(re, im) { /* ... */ }
-function ifft2d(re, im) { /* ... */ }
-
-async function fileReaderToMatrix(fileReader) { /* ... */ }
+import type { FileData } from "@/hooks/useUploadImg/type";
+import { fft2d, fileReaderToMatrix, ifft2d, matrixToImageMatrix, shiftFFT, zeroPadMatrix } from "./filterByButterworth";
 
 function applyIdealLowPass(re, im, cutoff) {
     const h = re.length;
@@ -24,23 +18,49 @@ function applyIdealLowPass(re, im, cutoff) {
     }
 }
 
-function matrixToImageMatrix(mat) {
-    return { width: mat[0].length, height: mat.length, data: mat };
-}
-
-export function filterIdeal(file: FileReader): ImageMatrix {
+export function filterIdeal(file: FileData) {
     return (async () => {
-        const img = await fileReaderToMatrix(file);
+        const loadedImg = await fileReaderToMatrix(file.url);
 
-        const re = img.data.map(r => Float64Array.from(r));
-        const im = img.data.map(r => new Float64Array(r.length));
+        const padded = zeroPadMatrix(loadedImg.data, loadedImg.height, loadedImg.width);
+
+        const re: number[][] = padded.data.map(row => Array.from(row));
+
+        const im: number[][] = re.map(r => new Array(r.length).fill(0));
 
         fft2d(re, im);
-        applyIdealLowPass(re, im, 50);
+        shiftFFT(re, im);
+        applyIdealLowPass(re, im, 350);
+        shiftFFT(re, im);
         ifft2d(re, im);
 
-        const result = re.map(row =>
-            Float64Array.from(row.map(v => Math.max(0, Math.min(255, v))))
+        const unpaddedResult = re.slice(0, loadedImg.height).map(row =>
+            row.slice(0, loadedImg.width)
+        );
+
+        let maxValue = -Infinity;
+        let minValue = Infinity;
+
+
+        for (const row of re) {
+            for (const value of row) {
+                if (value > maxValue) {
+                    maxValue = value;
+                }
+                if (value < minValue) {
+                    minValue = value;
+                }
+            }
+        }
+        const range = maxValue - minValue;
+
+        const result = unpaddedResult.map(row =>
+            Array.from(row.map(v => {
+                if (range === 0) return 0;
+                const normalized = (v - minValue) / range;
+                const rescaled = normalized * 255;
+                return Math.max(0, Math.min(255, rescaled));
+            }))
         );
 
         return matrixToImageMatrix(result);

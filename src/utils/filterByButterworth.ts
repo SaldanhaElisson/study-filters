@@ -197,13 +197,9 @@ export function filterButterworth(file: FileData) {
         const im: number[][] = re.map(r => new Array(r.length).fill(0));
 
         fft2d(re, im);
-
         shiftFFT(re, im);
-
         applyButterworthLowPass(re, im, 150, 1);
-
         shiftFFT(re, im);
-
         ifft2d(re, im);
 
         let maxValue = -Infinity;
