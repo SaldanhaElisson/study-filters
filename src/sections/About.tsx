@@ -8,21 +8,22 @@ export const About = () => {
             Butterworth
         </h3>
         <p className="leading-7 not-first:mt-6 align-middle">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a placerat risus. Duis sodales, eros eget tristique gravida, leo dolor auctor elit, non placerat urna mauris nec ante. Curabitur vitae enim vitae nunc facilisis auctor. Vivamus ut vehicula turpis, eu sagittis orci. Ut a nisi ut orci ullamcorper dictum. Nullam vitae lobortis est, eget volutpat sapien. Nam accumsan nisl id orci posuere, at semper nisl scelerisque. In hac habitasse platea dictumst. Suspendisse vulputate lacus vel ante ornare feugiat sed non velit. Donec at iaculis leo. Sed id tempor odio, eget dictum turpis. Nulla quis elit nunc. Sed commodo orci at mattis bibendum.
-        </p>
-        <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+            O filtro Butterworth apresenta uma transição mais suave entre as faixas de frequência permitidas e rejeitadas, reduzindo efeitos de ringing e artefatos indesejáveis decorrentes da filtragem ideal. Sua flexibilidade permite ajustar a ordem do filtro, proporcionando melhor controle sobre o grau de suavização. </p>
+
+        <h3>
             Ideal
         </h3>
 
         <p className="leading-7 not-first:mt-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a placerat risus. Duis sodales, eros eget tristique gravida, leo dolor auctor elit, non placerat urna mauris nec ante. Curabitur vitae enim vitae nunc facilisis auctor. Vivamus ut vehicula turpis, eu sagittis orci. Ut a nisi ut orci ullamcorper dictum. Nullam vitae lobortis est, eget volutpat sapien. Nam accumsan nisl id orci posuere, at semper nisl scelerisque. In hac habitasse platea dictumst. Suspendisse vulputate lacus vel ante ornare feugiat sed non velit. Donec at iaculis leo. Sed id tempor odio, eget dictum turpis. Nulla quis elit nunc. Sed commodo orci at mattis bibendum.
+            O filtro ideal caracteriza-se por uma transição abrupta entre as frequências permitidas e bloqueadas. Seu funcionamento baseia-se na definição de um limiar (cutoff) que preserva apenas as componentes de baixa frequência, eliminando altas frequências responsáveis por ruídos e detalhes finos.
         </p>
 
         <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
             gaussiano
         </h3>
+
         <p className="leading-7 not-first:mt-6">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent a placerat risus. Duis sodales, eros eget tristique gravida, leo dolor auctor elit, non placerat urna mauris nec ante. Curabitur vitae enim vitae nunc facilisis auctor. Vivamus ut vehicula turpis, eu sagittis orci. Ut a nisi ut orci ullamcorper dictum. Nullam vitae lobortis est, eget volutpat sapien. Nam accumsan nisl id orci posuere, at semper nisl scelerisque. In hac habitasse platea dictumst. Suspendisse vulputate lacus vel ante ornare feugiat sed non velit. Donec at iaculis leo. Sed id tempor odio, eget dictum turpis. Nulla quis elit nunc. Sed commodo orci at mattis bibendum.
+            O filtro gaussiano utiliza uma curva de distribuição normal como função de transferência, oferecendo suavização uniforme e evitando descontinuidades abruptas. Sua aplicação é amplamente reconhecida por minimizar ruídos preservando a naturalidade da imagem.
         </p>
     </div>
     )
